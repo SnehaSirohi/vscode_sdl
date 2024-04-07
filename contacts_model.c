@@ -44,16 +44,46 @@ void addContact(const char *name, const char *number, const char *email) {
 }
 
 // Function to free the memory used by the linked list
-void freeContactList() {
+void freeContactList(const char *name ) {
     ListNode *current = contactList;
+    ListNode *prev = NULL;
     ListNode *next;
-    while (current != NULL) {
+
+    if(name != NULL)
+    {
+        while (current != NULL) {
+
+        if(strcmp(current->data.name, name)==0)
+        {
+            if(prev == NULL){
+                contactList = current->next;
+            }else {
+                prev->next = current->next;
+            }
+        
         next = current->next;
         free(current->data.name);
         free(current->data.number);
         free(current->data.email);
         free(current);
-        current = next;
+        return;
+        }
+        prev = current;
+        current = current->next;
+        }
     }
-    contactList = NULL;
+    
+    // else {
+    //     while (current != NULL) {
+    //     next = current->next;
+    //     free(current->data.name);
+    //     free(current->data.number);
+    //     free(current->data.email);
+    //     free(current);
+    //     current = next;
+    // } 
+    //     contactList = NULL;
+
+    // }
+    
 }
