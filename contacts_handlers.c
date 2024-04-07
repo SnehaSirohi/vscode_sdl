@@ -6,6 +6,9 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+extern lv_obj_t *menu;
+extern lv_obj_t *tab1;
+
 // Event Callback Function Definitions
 void confirm_btn_event_handler(lv_event_t *e) {
 // Retrieve the filled information from the text areas
@@ -173,5 +176,55 @@ void event_handler_dn2(lv_event_t *e) {
 
         lv_obj_add_state(currentbtn, LV_STATE_CHECKED);
         lv_obj_scroll_to_view(currentbtn, LV_ANIM_ON);
+    }
+}
+
+
+void contact_delete_cb(lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    lv_obj_t *btn = lv_event_get_target(e);
+    lv_obj_t *parent = lv_obj_get_parent(btn);
+
+    if (code == LV_EVENT_CLICKED)
+    {
+        lv_obj_t *label = lv_obj_get_child(parent, 0);
+        const char *contactName = lv_label_get_text(label);
+
+        popup_Box(parent, contactName);
+    }
+}
+
+// Event Callback Function Definitions
+void close_msgbox(lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    lv_obj_t *btn = lv_event_get_target(e);
+    lv_obj_t *parent = lv_obj_get_parent(btn);
+    const char *name = lv_event_get_user_data(e);
+
+    if (code == LV_EVENT_CLICKED)
+    {
+        lv_obj_t *label = lv_obj_get_child(btn, 0);
+        const char *contactName = lv_label_get_text(label);
+
+        if (strcmp(contactName, "YES") == 0)
+        {
+            freeContactList(name);
+            lv_obj_clean(main_page);
+            createContactLabels(main_page);
+            lv_obj_del(parent);
+            lv_obj_del(menu);
+            contacts(tab1); // Re-create the menu
+
+            // lv_menu_set_load_page_event(menu, cont,main_page);
+        }
+        else
+        {
+            lv_obj_del(parent);
+        }
+
+        // createContactLabels(main_page);
+        // lv_obj_add_flag(base4, LV_OBJ_FLAG_HIDDEN);
     }
 }
