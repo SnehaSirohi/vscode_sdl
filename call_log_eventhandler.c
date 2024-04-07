@@ -4,7 +4,6 @@
 extern lv_obj_t * currentButton;
 extern lv_obj_t *tab2;
 
-
 void event_handler(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
