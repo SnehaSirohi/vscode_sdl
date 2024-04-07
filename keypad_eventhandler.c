@@ -26,13 +26,13 @@ static void msgbox_event_handler(lv_event_t *e)
 void calling_display(lv_obj_t* parent, lv_obj_t* modal, lv_obj_t* ta, char *text) {
     
 
-				static lv_style_t style_msgbox;
-				lv_style_init(&style_msgbox);
-				// lv_style_set_text_font(&style_msgbox, LV_STATE_DEFAULT, &lv_font_montserrat_20);
-				lv_style_set_text_color(&style_msgbox,  lv_color_black());
-				lv_style_set_bg_color(&style_msgbox,  lv_palette_main(LV_PALETTE_YELLOW));
-				// lv_style_set_margin_left(&style_msgbox, 50);
-			    lv_style_set_text_align(&style_msgbox,  LV_ALIGN_CENTER);
+				// static lv_style_t style_msgbox;
+				// lv_style_init(&style_msgbox);
+				// // lv_style_set_text_font(&style_msgbox, LV_STATE_DEFAULT, &lv_font_montserrat_20);
+				// lv_style_set_text_color(&style_msgbox,  lv_color_black());
+				// lv_style_set_bg_color(&style_msgbox,  lv_palette_main(LV_PALETTE_YELLOW));
+				// // lv_style_set_margin_left(&style_msgbox, 50);
+			    // lv_style_set_text_align(&style_msgbox,  LV_ALIGN_CENTER);
 
             	lv_obj_t* f_btn;
 				static const char * btns[] = {LV_SYMBOL_CLOSE, LV_SYMBOL_MUTE, LV_SYMBOL_VOLUME_MAX, ""};
