@@ -22,6 +22,6 @@ extern ListNode *contactList;
 extern int count;
 
 void addContact(const char *name, const char *number, const char *email);
-void freeContactList();
+void freeContactList(const char *names);
 
 #endif // CONTACTS_MODEL_H
